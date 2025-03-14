@@ -2,52 +2,47 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path"); // ✅ Add this
 const submissionRoutes = require("./routes/submissionRoutes");
 const userRoutes = require("./routes/userRoutes");
+const User = require("./models/User"); // ✅ Add this
 
-const { MONGO_URL, PORT } = process.env;
+const { MONGO_URL, PORT = 5000 } = process.env; // ✅ Set default PORT
 
 const app = express();
 
-// Connect to MongoDB
-mongoose
-  .connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("MongoDB connected");
-  })
-  .catch((error) => {
-    console.error("MongoDB connection error:", error);
-  });
-
+// ✅ Correct CORS placement
 const corsOptions = {
-  origin: "http://localhost:5173", // Your frontend URL
-  credentials: true, // Allow credentials (like cookies) if needed
+  origin: "http://localhost:5173", // Change this for production
+  credentials: true,
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: "Content-Type,Authorization",
 };
+app.use(cors(corsOptions));
+app.use(express.json());
 
+// ✅ Connect to MongoDB
+mongoose
+  .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch((error) => console.error("MongoDB connection error:", error));
+
+// ✅ Remove the extra `express.static("client")`
 app.use(express.static(path.join(__dirname, "client/dist")));
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist", "index.html"));
 });
 
-app.use(cors(corsOptions)); // Apply the correct CORS options
-app.use(express.json());
-
-app.use(express.static("client"));
-
+// ✅ Define API routes
 app.use("/api/submission", submissionRoutes);
-
 app.use("/api/auth", userRoutes);
 
-// User fetch route (Example)
+// ✅ Fix missing User model
 app.get("/api/users", async (req, res) => {
   try {
-    const users = await User.find(); // Fetch all users from the database
-    res.json(users); // Return the users as JSON
+    const users = await User.find();
+    res.json(users);
   } catch (err) {
     res
       .status(500)
@@ -55,7 +50,7 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-// Start server
+// ✅ Start the server correctly
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
