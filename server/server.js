@@ -27,9 +27,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.error("MongoDB connection error:", error));
 
-// ✅ Remove the extra `express.static("client")`
 app.use(express.static(path.join(__dirname, "client/dist")));
-
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist", "index.html"));
 });
