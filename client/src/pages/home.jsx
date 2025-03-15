@@ -9,7 +9,7 @@ const Home = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    console.log("API_URL used:", API_URL); // Debugging step
+    console.log("API_URL used:", process.env.REACT_APP_API_URL);
 
     const fetchProject = async () => {
       try {
