@@ -13,7 +13,7 @@ const Home = () => {
 
     const fetchProject = async () => {
       try {
-        const response = await fetch(`${APIURL}/api/submission/projects`);
+        const response = await fetch(`/api/submission/projects`);
 
         console.log("Response headers:", response.headers.get("content-type"));
 
