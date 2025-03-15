@@ -9,11 +9,13 @@ const Home = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
+    console.log("API_URL used:", API_URL); // Debugging step
+
     const fetchProject = async () => {
       try {
         const response = await fetch(`${API_URL}/api/submission/projects`);
 
-        console.log("Response headers:", response.headers.get("content-type")); // Log content type
+        console.log("Response headers:", response.headers.get("content-type"));
 
         if (!response.ok) {
           throw new Error(`HTTP Error! Status: ${response.status}`);
@@ -25,7 +27,7 @@ const Home = () => {
         }
 
         const jsonData = await response.json();
-        console.log("Fetched projects:", jsonData); // Log response data
+        console.log("Fetched projects:", jsonData);
         setProject(jsonData.projects);
       } catch (e) {
         console.error("Error fetching projects:", e);
