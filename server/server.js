@@ -32,14 +32,12 @@ const corsOptions = {
 app.use(cors(corsOptions)); // Apply correct CORS options
 app.use(express.json());
 
-// ✅ Serve frontend files in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client", "dist")));
+// Serve static files from the React build folder
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-  });
-}
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 // API routes
 app.use("/api/submission", submissionRoutes);
