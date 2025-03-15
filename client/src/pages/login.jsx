@@ -39,7 +39,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        `${API_URL}/api/submission/projects`, // Correct endpoint
+        `https://rgillooly-portfolio-b3a90409f6d8.herokuapp.com/api/submission/projects`, // Correct endpoint
         loginData
       );
       console.log("Response:", data);

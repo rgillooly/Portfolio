@@ -35,11 +35,14 @@ const Submission = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}/api/submission/`, {
-        projectName,
-        projectDescription,
-        projectLink,
-      });
+      const response = await axios.post(
+        `https://rgillooly-portfolio-b3a90409f6d8.herokuapp.com/api/submission/`,
+        {
+          projectName,
+          projectDescription,
+          projectLink,
+        }
+      );
       console.log("Signup successful:", response.data);
     } catch (error) {
       console.error(

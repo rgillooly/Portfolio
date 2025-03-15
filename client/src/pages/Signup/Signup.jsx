@@ -39,7 +39,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${API_URL}/api/submission/projects/api/auth/signup`,
+        `https://rgillooly-portfolio-b3a90409f6d8.herokuapp.com/api/submission/projects/api/auth/signup`,
         {
           username,
           email,
