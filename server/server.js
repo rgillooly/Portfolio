@@ -23,7 +23,10 @@ mongoose
   });
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Your frontend URL during development
+  origin:
+    process.env.NODE_ENV === "production"
+      ? "https://rgillooly-portfolio-b3a90409f6d8.herokuapp.com/"
+      : "http://localhost:5173",
   credentials: true,
   methods: "GET,POST,PUT,DELETE",
   allowedHeaders: "Content-Type,Authorization",
