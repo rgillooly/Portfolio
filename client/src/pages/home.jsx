@@ -13,7 +13,9 @@ const Home = () => {
 
     const fetchProject = async () => {
       try {
-        const response = await fetch(`/api/submission/projects`);
+        const response = await fetch(
+          `https://rgillooly-portfolio-b3a90409f6d8.herokuapp.com/api/submission/projects`
+        );
 
         console.log("Response headers:", response.headers.get("content-type"));
 
