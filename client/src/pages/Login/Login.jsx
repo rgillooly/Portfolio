@@ -37,7 +37,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/api/auth/login", // Correct endpoint
+        `${API_URL}/api/submission/projects/api/auth/login`, // Correct endpoint
         loginData
       );
       console.log("Response:", data);

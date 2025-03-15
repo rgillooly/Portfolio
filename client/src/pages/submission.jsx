@@ -35,7 +35,7 @@ const Submission = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("${API_URL}/api/submission/", {
+      const response = await axios.post(`${API_URL}/api/submission/`, {
         projectName,
         projectDescription,
         projectLink,

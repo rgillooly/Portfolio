@@ -39,7 +39,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/signup",
+        `${API_URL}/api/submission/projects/api/auth/signup`,
         {
           username,
           email,

@@ -39,7 +39,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "${API_URL}/api/auth/login", // Correct endpoint
+        `${API_URL}/api/submission/projects`, // Correct endpoint
         loginData
       );
       console.log("Response:", data);
