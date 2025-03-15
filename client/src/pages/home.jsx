@@ -6,7 +6,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = window._env_.REACT_APP_API_URL;
 
   useEffect(() => {
     console.log("API_URL used:", process.env.REACT_APP_API_URL);
