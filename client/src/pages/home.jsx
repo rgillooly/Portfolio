@@ -6,16 +6,14 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL;
+  const APIURL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    console.log("API_URL used:", process.env.REACT_APP_API_URL);
+    console.log("API_URL used:", APIURL); // Debugging step
 
     const fetchProject = async () => {
       try {
-        const response = await fetch(
-          `${REACT_APP_API_URL}/api/submission/projects`
-        );
+        const response = await fetch(`${APIURL}/api/submission/projects`);
 
         console.log("Response headers:", response.headers.get("content-type"));
 
