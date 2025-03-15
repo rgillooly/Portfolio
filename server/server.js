@@ -7,12 +7,12 @@ const userRoutes = require("./routes/userRoutes");
 
 require("dotenv").config();
 
-const { MONGO_URI, PORT } = process.env;
+const { MONGODB_URI, PORT } = process.env;
 const app = express();
 
 // Connect to MongoDB
 mongoose
-  .connect(MONGO_URI, {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
