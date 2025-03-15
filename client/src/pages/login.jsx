@@ -11,6 +11,8 @@ const Login = () => {
   });
   const { email, password } = inputValue;
 
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -37,7 +39,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/api/auth/login", // Correct endpoint
+        "${API_URL}/api/auth/login", // Correct endpoint
         loginData
       );
       console.log("Response:", data);

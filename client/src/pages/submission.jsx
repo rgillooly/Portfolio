@@ -11,6 +11,8 @@ const Submission = () => {
   });
   const { projectName, projectDescription, projectLink } = inputValue;
 
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -33,14 +35,11 @@ const Submission = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/submission/",
-        {
-          projectName,
-          projectDescription,
-          projectLink,
-        }
-      );
+      const response = await axios.post("${API_URL}/api/submission/", {
+        projectName,
+        projectDescription,
+        projectLink,
+      });
       console.log("Signup successful:", response.data);
     } catch (error) {
       console.error(
