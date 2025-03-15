@@ -38,13 +38,14 @@ app.use(express.json());
 // Serve static files from the React build folder
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
 // API routes
 app.use("/api/submission", submissionRoutes);
 app.use("/api/auth", userRoutes);
+
+// Serve frontend (only after API routes)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 app.listen(PORT || 5000, () => {
   console.log(`🚀 Server is running on port ${PORT || 5000}`);
